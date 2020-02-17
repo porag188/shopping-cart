@@ -1,20 +1,20 @@
-<div>
-  <p></p>
-</div>
 {{#each products}}
 <div class="row">
   {{#each this}}
-  <div class="col-sm-6 col-md-4">
+  <div class="col-lg-4 col-6">
     <div class="thumbnail">
-      <img src="{{this.imagePath}}" class="img-responsive" alt="">
-      <div class="caption">
-        <h3>{{this.title}} </h3>
-        <p class="description">{{this.description}} </p>
-        <div class="clearfix">
-          <div class=" price pull-left">${{this.price}}
-            <a href="#" class="btn btn-success pull-right" role="button">Add Card</a>
+      <img src="{{this.imagePath}}" class="img-thumbnail" alt="">
+      <div class="card-body">
+        <h4 class="card-title">{{this.title}} </h4>
+        <p class="card-text">{{this.description}} </p>
+        <div class="card-body row text-center">
+          <div class="col">
+            <div class="text-value-xl">${{this.price}}</div>
           </div>
-
+          <div class="vr"></div>
+          <div class="col">
+            <div class="text-value-xl"><a href="#" class="btn btn-primary">Add Card</a></div>
+          </div>
         </div>
       </div>
     </div>
