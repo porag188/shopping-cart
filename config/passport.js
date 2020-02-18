@@ -41,7 +41,7 @@ passport.use(
           return done(err);
         }
         if (user) {
-          return done(null, false, { message: 'Email is already i  Use' });
+          return done(null, false, { message: 'Email is already Used' });
         }
         var newUser = new User();
         newUser.email = email;
