@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 });
 //route create
 router.get('/user/signup', (req, res, next) => {
-  var messages = req.flash('error');
+  var messages = req.flash('errors');
   res.render('user/signup', {
     csrfToken: req.csrfToken(),
     messages: messages,
@@ -30,13 +30,14 @@ router.get('/user/signup', (req, res, next) => {
 router.post(
   '/user/signup',
   passport.authenticate('local.signup', {
-    successRedirect: '/user/porfile',
+    successRedirect: '/user/profile',
     failureRedirect: '/user/signup',
     failureFlash: true
   })
 );
+
 router.get('/user/profile', function(req, res, next) {
-  res.render('/user/profile');
+  res.render('user/profile');
 });
 // router.post('/user/signup', function(req, res, next) {
 //   res.redirect('/');

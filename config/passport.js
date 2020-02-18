@@ -29,7 +29,7 @@ passport.use(
         }
         var newUser = new User();
         newUser.email = email;
-        newUser.password = newUser.encryptPassword(password);
+        newUser.password = newUser.encryptPassword(password); // Errors lines
         newUser.save(function(err, result) {
           if (err) {
             return done(err);
