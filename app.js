@@ -15,10 +15,17 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 //Data base connecting
-mongoose.connect(
-  'mongodb+srv://porag:porag474@cluster1-33chu.mongodb.net/test?retryWrites=true&w=majority',
-  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
-);
+var db = require('./config/keys').MongoURI;
+mongoose
+  .connect(db, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
+  .then(() => console.log('Mongodb Connection stable...'))
+  .catch(err => console.log(err));
+//passportjs file configaretion appjs
+require('./config/passport');
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
