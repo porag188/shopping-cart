@@ -10,6 +10,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var bodyparser = require('body-parser');
 var validator = require('express-validator');
+var MongoStore = require('connect-mongo')(session);
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
@@ -44,11 +45,20 @@ app.use(validator());
 app.use(cookieParser());
 app.use(
   session({
-    secret: 'anystringoftext',
-    saveUninitialized: false,
-    resave: false,
-    httpOnly: false,
-    secure: false
+    secret: 'foobar',
+    cookie: {
+      secure: false,
+      maxage: 100 * 80 * 1000,
+      resave: true,
+      saveUninitialized: true
+    },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      collection: 'session'
+    }),
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
   })
 );
 //useing passport and flash
@@ -60,6 +70,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
   next();
 });
 
