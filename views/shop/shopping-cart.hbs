@@ -1,0 +1,47 @@
+{{#if products }}
+
+<div class="row  ">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quentty</th>
+                <th scope="col">Edit</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <th scope="row">{{this.item.title}}</th>
+                <td>{{this.price}} </td>
+                <td>{{this.qty}}</td>
+                <td>
+                    <a href="" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                    <a href="" class="btn btn-primary"><i class="fas fa-minus"></i></a>
+                </td>
+
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12 col-md-offset-3 col-sm-offset-3">
+            <strong>Total:${{totalPrice}} </strong>
+        </div>
+        <hr>
+        <div class="col-sm-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout" type="button" class="btn btn-success pull-right">Checkout</a>
+        </div>
+    </div>
+
+
+    {{else}}
+    <div class="row">
+        <div class="col-sm-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No Items in Cart</h2>
+        </div>
+    </div>
+    {{/if}}
